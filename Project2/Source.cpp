@@ -13,7 +13,6 @@ int TinhTong(int n, ...) {
 		Tong += va_arg(vl, int);
 	}
 	va_end(vl);
-
 	return Tong;
 }
 
