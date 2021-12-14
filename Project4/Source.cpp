@@ -32,13 +32,32 @@ void HoanVi2Dong(int** a, int d1, int d2, int c) {
 	}
 }
 
+void HoanVi2Cot(int** a, int d, int c1, int c2) {
+	for (int i = 0; i < d; i++)
+	{
+		HoanVi(a[i][c1], a[i][c2]);
+	}
+}
+
 void XoaDong(int** a, int& d, int c, int dxoa) {
 	for (int i = dxoa; i < d - 1; i++)
 	{
 		HoanVi2Dong(a, i, i + 1, c);
 	}
 	realloc(a[d - 1], 0);
-	--d;
+	d--;
+}
+
+void XoaCot(int** a, int d, int& c, int cxoa) {
+	for (int i = cxoa; i < c - 1; i++)
+	{
+		HoanVi2Cot(a, d, i, i + 1);
+	}
+	for (int i = 0; i < d; i++)
+	{
+		realloc(a[i], (c - 1) * sizeof(int));
+	}
+	c--;
 }
 
 void XuatMang(int** a, int d, int c) {
@@ -74,9 +93,14 @@ int main() {
 	NhapMang(a, d, c);
 	XuatMang(a, d, c);
 
-	int dxoa = 1;
+	/*int dxoa = 1;
 	printf("\nMang sau khi xoa dong thu %d là: ", dxoa);
 	XoaDong(a, d, c, dxoa);
+	XuatMang(a, d, c);*/
+
+	int cxoa = 0;
+	printf("\nMang sau khi xoa cot thu %d là: ", cxoa);
+	XoaCot(a, d, c, cxoa);
 	XuatMang(a, d, c);
 
 	/*giải phóng*/
